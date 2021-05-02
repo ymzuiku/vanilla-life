@@ -3,7 +3,7 @@ const observeOption = {
   subtree: true,
 };
 
-export function onAppend(target: HTMLElement, callback: Function) {
+export function onAppend(target: Element, callback: Function) {
   const observer = new MutationObserver((e) => {
     if (document.contains(target)) {
       observer.disconnect();
@@ -14,7 +14,7 @@ export function onAppend(target: HTMLElement, callback: Function) {
   observer.observe(document, observeOption);
 }
 
-export function onRemove(target: HTMLElement, callback: Function) {
+export function onRemove(target: Element, callback: Function) {
   // 当元素插入到页面后，才开始监听是否移除
   onAppend(target, () => {
     const observer = new MutationObserver(() => {
@@ -35,15 +35,15 @@ export interface LazyEnterOptions {
 }
 
 export const onEntry = (
-  target: HTMLElement,
+  target: Element,
   callback: (entry: IntersectionObserverEntry) => any,
   { minHeight = "50px", root }: LazyEnterOptions = {}
 ) => {
   onAppend(target, () => {
     // let isNeedRemoveMinHeight = false;
-    if (!target.style.minHeight) {
+    if (!(target as any).style.minHeight) {
       // isNeedRemoveMinHeight = true;
-      target.style.minHeight = minHeight;
+      (target as any).style.minHeight = minHeight;
     }
 
     if (!target.getAttribute("data-lazy")) {
