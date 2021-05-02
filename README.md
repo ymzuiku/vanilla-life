@@ -21,7 +21,7 @@ const out = document.createElement("div");
 
 onAppend(out, () => console.log("out已插入到页面中"));
 onRemove(out, () => console.log("out已从页面中移除"));
-onEntry(out, () => console.log("out已从屏幕外面滑动进入到屏幕中"));
+onEntry(out, () => console.log("out已从屏幕外面进入到屏幕中"));
 
 document.body.append(out);
 ```
