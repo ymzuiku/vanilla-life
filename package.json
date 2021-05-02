@@ -1,0 +1,29 @@
+{
+  "name": "vanilla-life",
+  "version": "0.1.1",
+  "main": "es/index.js",
+  "types": "lib/index.ts",
+  "exports": {
+    "import": "./lib/index.ts"
+  },
+  "private": false,
+  "scripts": {
+    "lib": "node rollup.config.js"
+  },
+  "devDependencies": {
+    "fs-extra": "^9.1.0",
+    "rollup": "^1.24.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup-plugin-uglify": "^6.0.3",
+    "tslib": "^2.2.0",
+    "typescript": "3.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymzuiku/vanilla-life.git"
+  },
+  "bugs": {
+    "url": "git+https://github.com/ymzuiku/vanilla-life.git"
+  },
+  "homepage": "git+https://github.com/ymzuiku/vanilla-life.git"
+}
