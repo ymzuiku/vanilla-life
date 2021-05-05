@@ -7,7 +7,10 @@ const appendWeak = new WeakMap<Element, Function[]>();
 const removeWeak = new WeakMap<Element, Function[]>();
 const entryWeak = new WeakMap<Element, Function[]>();
 
-export function onAppend(target: Element, callback: Function) {
+export function onAppend<T extends Element>(
+  target: T,
+  callback: (ele: T) => any
+) {
   if (appendWeak.has(target)) {
     const fns = appendWeak.get(target)!;
     fns.push(callback);
@@ -21,7 +24,7 @@ export function onAppend(target: Element, callback: Function) {
       observer.disconnect();
       const fns = appendWeak.get(target);
       if (fns) {
-        fns.forEach((fn) => fn());
+        fns.forEach((fn) => fn(target));
       }
       appendWeak.delete(target);
     }
@@ -30,7 +33,10 @@ export function onAppend(target: Element, callback: Function) {
   observer.observe(document, observeOption);
 }
 
-export function onRemove(target: Element, callback: Function) {
+export function onRemove<T extends Element>(
+  target: T,
+  callback: (ele: T) => any
+) {
   if (removeWeak.has(target)) {
     const fns = removeWeak.get(target)!;
     fns.push(callback);
@@ -46,7 +52,7 @@ export function onRemove(target: Element, callback: Function) {
         observer.disconnect();
         const fns = removeWeak.get(target);
         if (fns) {
-          fns.forEach((fn) => fn());
+          fns.forEach((fn) => fn(target));
         }
         removeWeak.delete(target);
       }
@@ -62,9 +68,9 @@ export interface LazyEnterOptions {
   root?: Element;
 }
 
-export const onEntry = (
-  target: Element,
-  callback: (entry: IntersectionObserverEntry) => any,
+export const onEntry = <T extends Element>(
+  target: T,
+  callback: (target: T, entry: IntersectionObserverEntry) => any,
   { minHeight = "50px", root }: LazyEnterOptions = {}
 ) => {
   if (entryWeak.has(target)) {
