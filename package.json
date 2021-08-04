@@ -1,11 +1,10 @@
 {
   "name": "vanilla-life",
-  "version": "0.1.8",
-  "main": "./cjs/index.js",
+  "version": "0.1.11",
+  "main": "lib/index.js",
   "types": "lib/index.ts",
   "exports": {
-    "require": "./cjs/index.js",
-    "import": "./esm/index.js"
+    "import": "./lib/index.ts"
   },
   "private": false,
   "scripts": {
