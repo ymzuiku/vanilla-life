@@ -1,6 +1,6 @@
 {
   "name": "vanilla-life",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "main": "lib/index.js",
   "types": "lib/index.ts",
   "exports": {
@@ -10,11 +10,12 @@
   "scripts": {
     "esm": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=esm --format=esm --target=es6  --bundle --external:querystring-number --minify --splitting",
     "cjs": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=cjs --format=cjs --target=es6  --bundle --external:querystring-number --minify",
-    "lib": "yarn esm && yarn cjs"
+    "ts": "tsc --noemit --skipLibCheck --incremental --tsBuildInfoFile './node_modules/.tsbuildinfo'",
+    "build": "pnpm esm && pnpm cjs"
   },
   "devDependencies": {
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
   },
   "repository": {
     "type": "git",

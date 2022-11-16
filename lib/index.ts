@@ -19,7 +19,7 @@ export function onAppend<T extends Element>(
 
   appendWeak.set(target, [callback]);
 
-  const observer = new MutationObserver((e) => {
+  const observer = new MutationObserver((_e) => {
     if (document.contains(target)) {
       observer.disconnect();
       const fns = appendWeak.get(target);
